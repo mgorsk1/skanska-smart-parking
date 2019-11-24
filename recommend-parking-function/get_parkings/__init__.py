@@ -119,7 +119,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     duration = legs.get('duration').get('text')
                     steps = legs.get('steps')
 
-                    result.append(dict(id=id, description=description, duration=duration, steps=steps, distance=distance))
+                    result.append(
+                        dict(id=id, description=description, duration=duration, steps=steps, distance=distance,
+                             lat=to_lat, lon=to_lon))
         else:
             pass
 
@@ -131,5 +133,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         body = dumps(result)
 
     return func.HttpResponse(body=body, status_code=200)
-
-
